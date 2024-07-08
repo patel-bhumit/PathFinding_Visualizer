@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Map from './component/map';
+import { BrowserView, MobileView } from 'react-device-detect';
 
 
 const App = () => {
@@ -26,15 +27,20 @@ const App = () => {
 
   return (
     <div className='App'>
-      {(latitude !== null && longitude !== null) ? (
-        <Map 
+      <BrowserView>
+        {(latitude !== null && longitude !== null) ? (
+          <Map 
           latitude={latitude} 
           longitude={longitude} 
           zoomLevel={13} 
-        />
-      ) : (
-        <p>Loading geolocation data...</p>
-      )}
+          />
+        ) : (
+          <p>Loading geolocation data...</p>
+        )}
+      </BrowserView>
+      <MobileView>
+        <p style={{backgroundColor: 'white', color: 'black'}}>You can not access this website on mobile device.</p>
+      </MobileView>
     </div>
   );
 }
