@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import createGraph from './createGraph';
 import dijkstra from '../algo/djikstraAlgorithm';
 import Nav from '../ui/navbar-menu';
+import Tutorial from './tutorial';
 
 function Map({ latitude, longitude, zoomLevel }) {
   const mapRef = useRef(null);
@@ -164,6 +165,9 @@ function Map({ latitude, longitude, zoomLevel }) {
           setGraph(null);
           setCoordsGraph(null);
           if (markerRef.current && circleMarkerRef.current) {
+                markerRef.current.remove();
+                  polylineGroup.current.clearLayers(); // Clear all layers in the LayerGroup
+                
                 setFirstNode(null);
                 setSecondNode(null);
                 setClicked(false);
@@ -226,6 +230,7 @@ function Map({ latitude, longitude, zoomLevel }) {
 
   return (
     <div>
+      <Tutorial/>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Nav handleRun = {handleFindPath} firstNode={firstNode} secondNode= {secondNode} clear = {clearMap}/>
       </div>

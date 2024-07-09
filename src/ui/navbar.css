@@ -1,6 +1,6 @@
 .navbar-container {
     width: max-content;
-    height: 3rem;
+    height: 4rem;
     border: 1px solid #ccc;
     align-items: center;
     border-radius: 50px;
@@ -31,12 +31,12 @@
 
   .activeTrace {
     color: white !important;
-    background-color: green !important;
+    background-color: #4caf50 !important;
   }
 
   .deactiveTrace {
     color: white !important;
-    background-color: red !important;
+    background-color: #f44336 !important;
   }
   
   .nav-link {
