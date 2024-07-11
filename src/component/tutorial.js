@@ -35,9 +35,9 @@ function Tutorial() {
         <span>
         In this step, you will set the ending point for the path you want to find.
         <br />
-        1. <strong>Left Click on the Map</strong>: Click on the map at the location where you want to set the ending point. You will see a marker appear at the clicked location.
+        1. <strong>Rigth Click on the Map</strong>: Right Click on the map at the location where you want to set the ending point. You will see a marker appear at the clicked location.
         <br />
-        2. <strong>Wait for the Marker to Turn Red</strong>: The marker will initially appear in green. Please wait until the ending point button in the navigation bar turns red 
+        2. <strong>Wait for the Marker to Turn Green</strong>: The marker will initially appear in Red. Please wait until the ending point button in the navigation bar turns Green 
         <img src={red2} alt="Red Button" className="inline-block mx-1 w-auto h-10" />, 
         indicating that the ending point has been successfully set.
       </span>
