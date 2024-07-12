@@ -12,7 +12,7 @@ const createGraph = (data) => {
     const allowedHighways = [
         "motorway", "trunk", "primary", "secondary", "tertiary", "unclassified",
         "residential", "motorway_link", "trunk_link", "primary_link",
-        "secondary_link", "tertiary_link", "living_street"
+        "secondary_link", "tertiary_link", "living_street", "service"
       ];
       
     const filteredNodes = nodes.filter(elem => allowedHighways.includes(elem.tags.highway));

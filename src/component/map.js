@@ -30,7 +30,7 @@ function Map({ latitude, longitude, zoomLevel }) {
     const fetchController = new AbortController();
     fetchControllerRef.current = fetchController;
     const query = `[out:json][timeout:25];
-    nwr(around:3000,${lat},${lng})["highway"];
+    nwr(around:5000,${lat},${lng})["highway"];
     out geom;`;
 
     const response = await fetch('https://overpass-api.de/api/interpreter', {
@@ -58,7 +58,7 @@ function Map({ latitude, longitude, zoomLevel }) {
   const findNearestValue = (lat, lng, json) => {
     let nearestNode = null;
     let currentPoint = latLng(lat, lng);
-    let lastDistance = 3000;
+    let lastDistance = 5000;
   
     if (Array.isArray(json.elements)) {
       const nodes = json.elements.filter(elem => elem.type === "way");
@@ -66,7 +66,7 @@ function Map({ latitude, longitude, zoomLevel }) {
       const allowedHighways = [
         "motorway", "trunk", "primary", "secondary", "tertiary", "unclassified",
         "residential", "motorway_link", "trunk_link", "primary_link",
-        "secondary_link", "tertiary_link", "living_street"
+        "secondary_link", "tertiary_link", "living_street", "service"
       ];
   
       const filteredNodes = nodes.filter(elem => allowedHighways.includes(elem.tags.highway));
@@ -190,7 +190,7 @@ function Map({ latitude, longitude, zoomLevel }) {
 
             // Add a new marker at the clicked location
             const newCircleMarker = new L.Circle([e.latlng.lat, e.latlng.lng], {
-                radius: 3000,
+                radius: 5000,
                 opacity: .001,
             }).addTo(mapInstance.current);
 
@@ -213,7 +213,7 @@ function Map({ latitude, longitude, zoomLevel }) {
             if(SecondMarkerRef.current){
               SecondMarkerRef.current.remove();
             }
-            if (distance <= 3000) {
+            if (distance <= 5000) {
                 // Add a new marker at the clicked location
                 const SecondMarker = new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(mapInstance.current);
                 SecondMarkerRef.current = SecondMarker;
