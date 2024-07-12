@@ -59,9 +59,7 @@ Contributions to the Pathfinding Visualizer are welcome. Please feel free to for
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
-- Hat tip to anyone whose code was used
 - Inspiration
     - **https://pathfinding.kelvinzhang.ca/**
     - **https://honzaap.github.io/Pathfinding/**
 - for loading screen **https://uiball.com/ldrs/**
-- etc
