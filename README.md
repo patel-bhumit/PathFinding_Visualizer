@@ -56,7 +56,7 @@ Once the application is running, follow these steps to use the visualizer:
 Contributions to the Pathfinding Visualizer are welcome. Please feel free to fork the repository, make changes, and submit pull requests. You can also open issues to suggest improvements or report bugs.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 - Hat tip to anyone whose code was used
