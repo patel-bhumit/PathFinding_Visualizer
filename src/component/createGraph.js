@@ -6,11 +6,19 @@ const createGraph = (data) => {
     let coords = new Map();
 
     const nodes = data.elements.filter(elem => {
-        return elem.type === "way"
+            return elem.type === "way"
     });
 
-    for(let i = 0; i < nodes.length - 1; i++){
-        const node = nodes[i];
+    const allowedHighways = [
+        "motorway", "trunk", "primary", "secondary", "tertiary", "unclassified",
+        "residential", "motorway_link", "trunk_link", "primary_link",
+        "secondary_link", "tertiary_link", "living_street"
+      ];
+      
+    const filteredNodes = nodes.filter(elem => allowedHighways.includes(elem.tags.highway));
+
+    for(let i = 0; i < filteredNodes.length - 1; i++){
+        const node = filteredNodes[i];
         for(let j = 0; j < node.nodes.length-1; j++){
             let fromCoord = latLng(node.geometry[j].lat, node.geometry[j].lon);
             let fromNode = node.nodes[j];

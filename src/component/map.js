@@ -58,26 +58,35 @@ function Map({ latitude, longitude, zoomLevel }) {
   const findNearestValue = (lat, lng, json) => {
     let nearestNode = null;
     let currentPoint = latLng(lat, lng);
-    let lastDistance = 3000
+    let lastDistance = 3000;
   
-      if (Array.isArray(json.elements)) {
-        const nodes = json.elements.filter(elem => {
-          return elem.type === "way"
-        });
-
-        nodes.forEach(elem => {
-          let nodePoint = latLng(elem.bounds.minlat, elem.bounds.minlon);
-          let distance = nodePoint.distanceTo(currentPoint)
-            if(distance < lastDistance){
-              nearestNode = elem;
-              lastDistance = distance;
-            }
-        });
-      }
-
-
+    if (Array.isArray(json.elements)) {
+      const nodes = json.elements.filter(elem => elem.type === "way");
+  
+      const allowedHighways = [
+        "motorway", "trunk", "primary", "secondary", "tertiary", "unclassified",
+        "residential", "motorway_link", "trunk_link", "primary_link",
+        "secondary_link", "tertiary_link", "living_street"
+      ];
+  
+      const filteredNodes = nodes.filter(elem => allowedHighways.includes(elem.tags.highway));
+  
+      filteredNodes.forEach(elem => {
+        let midpointLat = (elem.bounds.minlat + elem.bounds.maxlat) / 2;
+        let midpointLon = (elem.bounds.minlon + elem.bounds.maxlon) / 2;
+        let midpoint = latLng(midpointLat, midpointLon);
+        let distance = midpoint.distanceTo(currentPoint);
+  
+        if (distance < lastDistance) {
+          nearestNode = elem;
+          lastDistance = distance;
+        }
+      });
+    }
+  
     return nearestNode.nodes[0];
-  }
+  };
+  
 
   const handleFindPath = async (showTrace) => {
     if (firstNode && secondNode && graph && coordsGraph) {
